@@ -84,3 +84,30 @@ std::cout << Yourein::strs::sfind(s1, "wanna") << std::endl;
 
 また、この関数の計算量は最低$O(N)$、最悪$O(2N)$になります。
 両者ともに線形時間ですが、```strcount```関数同様、$|S| \le 5 \times 10^7$ の制約下での使用を想定しています。
+
+## strformat
+```std::string```に対しての左揃え、右揃え、文字埋めなどのフォーマット要素を提供します。
+
+**Definition**
+```cpp
+std::string strformat(std::string base, char filler, int length, bool Lspace = false)
+```
+
+baseに対して、フォーマット対象の文字列を。
+fillerに対して、埋めるための文字を。例えばここに空白文字を入れると空白埋めをします。
+lengthに対して、フォーマット後の文字列の長さを与えます。後述しますが文字列の長さによって関数の動作が変わります。
+Lspaceに対して、true or falseの2値を与えます。文字列を左に寄せるか右に寄せてフォーマットするかを選択します。
+
+**使用例**
+```cpp
+std::string s = "abcdefg";
+std::string ss = "1234567890";
+
+std::cout << Yourein::strs::strformat(s, ' ', 10) << std::endl;  //[abcdefg   ]
+std::cout << Yourein::strs::strformat(s, ' ', 10, true) << std::endl; //[   abcdefg]
+
+std::cout << Yourein::strs::strformat(s, ' ', 5) << std::endl; //[12345]
+std::cout << Yourein::strs::strformat(s, ' ', 5, true) << std::endl; //[67890]
+```
+base.size() < lengthである場合はLspaceがtrueであるかfalseであるかによって右/左寄せでfillerを文字列に追加します。
+一方base.size() > lengthである場合は文字列の左端もしくは右端をカットして返します。

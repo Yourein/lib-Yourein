@@ -67,5 +67,28 @@ namespace Yourein{
                 return false;
             }
         }
+
+        std::string strformat(std::string base, char filler, int length, bool Lspace = false){
+            std::string formated;
+            int spaced = length - base.size();
+
+            if (spaced >= 0){
+                std::string spacer;
+                for (int appender = 0; appender < spaced; appender++) spacer += filler;
+
+                if (Lspace) formated = spacer + base;
+                else formated = base + spacer;
+            }
+            else{
+                if (Lspace){
+                    formated = base.substr(base.size()-length, length);
+                }
+                else{
+                    formated = base.substr(0, length);
+                }
+            }
+
+            return formated;
+        }
     }
 }
