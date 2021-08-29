@@ -8,7 +8,6 @@
 
 ```cpp
 set<int> a;
-
 for (auto x : a){
     cout << x << " "; 
 }
