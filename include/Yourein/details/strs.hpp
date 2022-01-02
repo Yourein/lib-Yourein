@@ -7,6 +7,60 @@
 
 namespace Yourein{
     namespace strs{
+        template<typename T>
+        std::vector<T> pinput(std::string s, char spliter){
+            std::vector<T> r;
+            std::string buf;
+            for (int i = 0;  i < s.size(); i++){
+                if (s[i] == spliter){
+                    while (buf[0] == ' ') {
+                        buf.erase(buf.begin()+0);
+                    }
+                    
+                    if (std::is_same<T, int>::value){
+                        r.push_back(stoi(buf));
+                    }
+                    else if (std::is_same<T, double>::value){
+                        r.push_back(stod(buf));
+                    }
+                    else if (std::is_same<T, long long>::value){
+                        r.push_back(stoll(buf));
+                    }
+                    else if (std::is_same<T, long double>::value){
+                        r.push_back(stold(buf));
+                    }
+
+                    buf.clear();
+                }
+                else{
+                    buf.push_back(s[i]);
+                }
+            }
+
+            if (buf.size() != 0){
+                while (buf[0] == ' ') {
+                    buf.erase(buf.begin()+0);
+                }
+                
+                if (std::is_same<T, int>::value){
+                    r.push_back(stoi(buf));
+                }
+                else if (std::is_same<T, double>::value){
+                    r.push_back(stod(buf));
+                }
+                else if (std::is_same<T, long long>::value){
+                    r.push_back(stoll(buf));
+                }
+                else if (std::is_same<T, long double>::value){
+                    r.push_back(stold(buf));
+                }
+                buf.clear();
+            }
+
+            return r;
+        }
+
+        template<>
         std::vector<std::string> pinput(std::string s, char spliter){
             std::vector<std::string> r;
             std::string buf;
