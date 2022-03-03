@@ -46,14 +46,7 @@ namespace Yourein{
         //Returns a list of leaders. Its size equal to number of disjoint-set
         std::vector<long long> groups(){
             std::vector<long long> leaders;
-            leaders.push_back(leader(0));
-            for (long long i = 1; i < node; i++){
-                //Insert leaders to the list in lexicographic ordering
-                long long xi = leader(i);
-                auto itr = lower_bound(leaders.begin(), leaders.end(), xi);
-                if (*itr != xi) leaders.insert(itr, xi);
-            }
-
+            for (long long i = 0; i < n; i++) if (parent_or_size[i] < 0) leaders.push_back(i);
             return leaders;
         }
       private:
