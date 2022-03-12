@@ -46,7 +46,7 @@ namespace Yourein{
         //Returns a list of leaders. Its size equal to number of disjoint-set
         std::vector<long long> groups(){
             std::vector<long long> leaders;
-            for (long long i = 0; i < n; i++) if (parent_or_size[i] < 0) leaders.push_back(i);
+            for (long long i = 0; i < node; i++) if (parent_or_size[i] < 0) leaders.push_back(i);
             return leaders;
         }
       private:
