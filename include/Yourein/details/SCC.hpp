@@ -88,11 +88,15 @@ namespace Yourein{
                 std::vector<edge> elist;
 
                 Sparse_table(int nodes, std::vector<std::pair<int, edge>>& edges) : start(nodes+1), elist(edges.size()) {
+                    //Fix 0-indexed to 1-indexed to use prefix-sum for edgecount
                     for (auto e : edges) start[e.first + 1]++;
                     for (int i = 1; i <= nodes; i++) start[i] += start[i-1];
 
                     auto counter = start;
-                    for (auto e : edges) elist[counter[e.first]++] = e.second;
+                    for (auto e : edges) {
+                        elist[counter[e.first]] = e.second;
+                        counter[e.first]++;
+                    }
                 }
             };
     };
